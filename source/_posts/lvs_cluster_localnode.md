@@ -1,8 +1,8 @@
 ---
 title: LVS：LocalNode / Two Box LVS / LVS集成模式配置与原理详解  
 date: 2018-03-04 17:46
-tags: [lvs, keepalived, two box, localnode]
-categories: [load balance]
+tags: [lvs, keepalived, ipvs, vrrp, netfilter, localnode]
+categories: [技术]
 ---
 
 ## LVS：LocalNode

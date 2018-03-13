@@ -1,5 +1,8 @@
 ---
 title: Linux服务器集群方案介绍
+date: 2018-03-04 15:46
+tags: []
+categories: [技术]
 ---
 服务(器)集群，涉及的知识点相对偏OS底层些，所以想理解掌握整体的方案，需要把相关的知识点系统的掌握。  
 centos7+nginx+keepalived实践，及原理分析  
