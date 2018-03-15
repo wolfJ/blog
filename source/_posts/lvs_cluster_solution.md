@@ -1,60 +1,57 @@
 ---
-title: Linux服务器集群方案介绍
-date: 2018-03-04 15:46
-tags: []
+title: Linux服务器集群方案介绍-(nginx/lvs)
+date: 2018-03-04 15:46  
+tags: [linux, cluster, nginx, lvs, keepalived]
 categories: [技术]
 ---
-服务(器)集群，涉及的知识点相对偏OS底层些，所以想理解掌握整体的方案，需要把相关的知识点系统的掌握。  
+服务(器)集群，涉及的知识点相对偏操作系统底层，所以想理解并掌握整体的方案，需要将相关的知识点系统化的学习。  
+
 centos7+nginx+keepalived实践，及原理分析  
 centos7+lvs+keepalived实践，及原理分析  
 本文尽可能的关注解决方案的整体与关键点，弱化介绍方案中各软件应用的参数配置.
    
 
 
-##依赖知识点
+## 依赖知识点
 大致可分为三块：
 OS(Centos7，不同系统、版本间会有细微差异)，
 网络(协议，拓扑，流向)，
 应用(上层应用，如tomcat,mysql,等).
 
 ## 概念名词
-Linux, Cluster, Load Balancer(LB), High Availability(HA), High Performance(HPC), Node, DNS, FailOver, VRRP
-Director,RealServer, Proxy
-DR,NAT,TUN,
-Nginx, Keepalived, LVS, F5, IPVS, KTCPVS, NetFilter
-集群，负载，高可用，负载均衡器，节点
-扩展性，
-二层、三层、四层交换机、路由器，反向代理，中间人
-四层交换，七层交换，
-Netfilter框架
+Linux, Cluster, Load Balancer(LB), High Availability(HA), High Performance(HPC), Node, DNS, FailOver, VRRP  
+Director,RealServer, Proxy  
+DR,NAT,TUN  
+Nginx, Keepalived, LVS, F5, IPVS, KTCPVS, NetFilter  
+集群，负载，高可用，负载均衡器，节点  
+扩展性  
+二层、三层、四层交换机、路由器，四层交换，七层交换，反向代理，中间人  
 
 ## 常见问题
-安装配置、启动
-服务器要求/性能？
-方案选型？
+方案选型  
+安装配置、启动  
+问题及排查  
+服务器要求/性能？  
 
-
-
-方案一：先介绍服务器形态，再介绍采用四层/七层交换，完成负载，介绍各种形态的方法，优劣。
-方案二：由简单到复杂，先七层，后三层，先独立，后混合。
 
 ## 场景介绍
 
-### 简单经典场景
-#### 单台负载调度器 + 多台真实服务器; 负载
+#### nginx独立负载
+单台负载调度器 + 多台真实服务器，实现负载能力. 
 nginx实现负载，老版本支持七层负载，新版本也支持四层负载了。  
 **参考连接：**  
 [nginx负载均衡配置](https://www.jianshu.com/p/90831a94ce43)  
 [nginx四层负载均衡配置代理Mysql集群](https://wuguiyunwei.com/index.php/2017/06/14/919.html)
 
-#### 双台负载调度器 + 多台真实服务器; 主备
+#### nginx独立负载+主备
+双台负载调度器 + 多台真实服务器; 主备
 nginx实现负载，keepalived实现HA。  
 **参考连接：**  
 [Nginx+Keepalived实现站点高可用](http://seanlook.com/2015/05/18/nginx-keepalived-ha/index.html)
 
 
-Nginx四层负载，工作在OS的用户空间，性能略差，但具体怎么样要测试下，还看到了付费？仔细了解一下。网上大多是以前的文章了，工作在七层。
-
+<!--Nginx四层负载，工作在OS的用户空间，性能略差一点，但具体怎么样要测试下，还看到了付费？仔细了解一下。网上大多是以前的文章了，工作在七层。
+-->
 ### LVS负载场景
 #### 单台负载调度器 + 多台真实服务器; 负载
 **参考连接：**  
