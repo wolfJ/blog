@@ -1,5 +1,5 @@
 ---
-title: LVS：LocalNode / Two Box LVS / LVS集成模式配置与原理详解  
+title: 两台机器 Centos7 LVS+Keepalived 实现负载/高可用之 DR 集成部署(LocalNode/Two Box)及原理详解  
 date: 2018-03-04 17:46
 tags: [lvs, keepalived, ipvs, vrrp, netfilter, localnode]
 categories: [技术]
@@ -112,7 +112,7 @@ Centos7.3-minimal，通过epel源安装基础软件:
 	RIP: 172.16.0.32  interface: enp0s3
 	VIP: 172.16.0.30	
 	
-启用服务/开机启动/防火墙设置/SELinux关闭:  
+开机启动/启动服务/防火墙端口/SELinux关闭:  
 
 	touch /etc/sysconfig/ipvsadm 
 	systemctl enable ipvsadm

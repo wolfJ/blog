@@ -1,9 +1,11 @@
 ---
-title: Linux服务器集群方案介绍-(nginx/lvs)
+title: Linux服务器集群方案介绍之 nginx，lvs
 date: 2018-03-04 15:46  
 tags: [linux, cluster, nginx, lvs, keepalived]
-categories: [技术]
+categories: 
+   - [技术]
 ---
+
 服务(器)集群，涉及的知识点相对偏操作系统底层，所以想理解并掌握整体的方案，需要将相关的知识点系统化的学习。  
 
 centos7+nginx+keepalived实践，及原理分析  
@@ -101,15 +103,6 @@ lvs + keepalived DR mode:
 参见每个具体的场景介绍
 
 
-
-独立部署步骤
-
-* Director节点安装ipvsadm，承担LVS的负载调度能力  
-* Director节点安装keepalived，负责VRRP的配置，对故障处理(Failover)实现LVS的高可用
-* 在Director上配置keepalived，先后配置主/备、权重、IP负载均衡技术、调度算法、监听IP，负载IP等信息、、、、
-* RealServer配置VIP，用于接收目标是VIP的网络包
-* RealServer部署自己的服务应用(apache,nginx,tomcat...)
-* 防火墙开启相应端口
 
 
 All machines in the LVS have the VIP: only the VIP on the director replies to arp requests, the VIP on the realservers must be on a non-arping device (eg lo:0, dummy).
