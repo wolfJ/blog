@@ -138,9 +138,9 @@ RealServer配置VIP，用于接收目标是VIP的网络包
 新建一个脚本 lvs-web.sh: `vi /etc/init.d/lvs-web.sh`  
 	
 	#!/bin/sh
-	VIP=182.148.15.239
+	VIP=172.16.0.30
 	. /etc/rc.d/init.d/functions
-	   
+	
 	case "$1" in
 	 
 	start)
@@ -178,26 +178,30 @@ RealServer配置VIP，用于接收目标是VIP的网络包
 	    echo "Usage: $0 {start|stop|status}"
 	    exit 1
 	esac
-	exit 0	
+	exit 0
 
 依赖脚本权限：`chmod +x /etc/rc.d/init.d/functions`  
-使用：`	sh lvs-web.sh start|stop|status`
+使用：`sh /etc/init.d/lvs-web.sh start|stop|status`
 
 
 
 至此，完成所有配置，享受短暂的成功喜悦吧：）
 
-
+### 如何排查问题
+点击[Linux下如何排查问题]()
 
 ## 分析
 DR模式下，请求的包流向是怎么走的？  
 在Director设备上请求VIP会怎么样？  
 在RealServer设备上请求VIP会怎么样？  
 
+#### 在Director设备上请求VIP会怎么样？
+独立部署时，在director设备上作为Client发起请求是怪异的做法，最多是在RealServer上作为Client发起请求，如果存在，发现不能正常的收到响应的包。
 
 ## 补充知识点
 
 * How LVS-DR works
+* LVS clients on Realservers?
 * Handling the arp problem for LVS-DR
 * 6.8.2.masquerade the service(s) for the realservers
 * 6.8.3. add a default route for packets from the primary IP on the outside of the director
@@ -212,6 +216,8 @@ However, LVS-DR and LVS-Tun just forward the packets to the realserver without r
 
 	/sbin/iptables -t nat -A PREROUTING -d VIP -p tcp -m tcp --dport 80 -j DNAT --to-destination VIP:9999
 
+
+#### LVS clients on Realservers
 
 
 

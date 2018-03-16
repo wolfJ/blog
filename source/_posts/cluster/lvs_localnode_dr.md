@@ -222,7 +222,7 @@ enp0s3 上的VIP已经由keepalived模块配置好了，不需要我们多做设
 
 修改文件 `vi /etc/sysctl.conf` 添加以下内容 
 
-	# 配有VIP的网卡enp0s3忽略arp包，让lo处理
+	# 限制外部网络接口enp0s3的arp包
 	net.ipv4.conf.enp0s3.arp_ignore = 1 
 	net.ipv4.conf.enp0s3.arp_announce = 2 
 	# 允许包转发 
