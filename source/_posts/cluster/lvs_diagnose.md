@@ -20,7 +20,7 @@ Enable logging for the IPv4 (AF Family 2):
 	
 	sysctl net.netfilter.nf_log.2=nf_log_ipv4
 	
-reconfigure rsyslogd to log kernel messages (kern.*) to /var/log/messages:
+reconfigure rsyslogd to log kernel messages (kern.*) to /var/log/kern:
 
 	vi /etc/rsyslog.conf
 	#去掉 #kern.* 前面的#号，且指定日志输出的路径。
