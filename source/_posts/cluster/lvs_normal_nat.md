@@ -18,9 +18,12 @@ nginx 应用服务模块
 ## 架构
 给出架构图:  
 ![lvs keepalived nat](nat.png)   
+
+<!--more-->
 Director节点ipvsadm模块，承担LVS的负载调度能力.  
 Director节点keepalived模块，负责VRRP的配置，对故障处理(Failover)实现LVS的高可用.  
 RealServer部署自己的服务应用(apache,nginx,tomcat...)，此处选择nginx.   
+
 
 ## 部署
 

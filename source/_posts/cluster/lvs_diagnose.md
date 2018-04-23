@@ -5,12 +5,13 @@ tags: [linux, centos7]
 categories: [技术]  
 ---
 
-## 目录
 在Centos7下部署、配置集群环境时，经常会遇到各种问题，需要一些相关排查技能才可以做到兵来将挡，应对自如。
 
 ## 技能介绍
 
 ### 如何查看(debug) iptables/netfilter的详细日志
+
+<!--more-->
 
 Load the (IPv4) netfilter log kernel module:
 

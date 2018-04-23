@@ -33,6 +33,7 @@ It's possible to have a fully failover LVS with just two boxes. The machine whic
 
 ![two-box-lvs-architecture](two-box-lvs-architecture.png)
 
+<!--more-->
 
 ## 解决实现思路
 在两台机器上实现LVS有以下几种思路可以实现：  
