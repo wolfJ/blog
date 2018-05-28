@@ -9,5 +9,7 @@
 # These files are text and should be normalized (Convert crlf => lf)
 *.gitattributes text
 .gitignore text
-*.md linguist-language=Markdown
 *.css linguist-language=Markdown
+*.md linguist-language=Markdown
+*.js linguist-language=Markdown
+
